@@ -5,5 +5,5 @@ This is an (in progress) chess engine and simple electron UI.
 
 Install node.js and electron.
 
-Run cmd:
+Run cmd:  
 ```npx electron .```
