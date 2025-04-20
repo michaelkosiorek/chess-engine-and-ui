@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      background-color: #1e475a;
+    }
+
+    body {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+    }
+
+    .left-fit {
+      max-height: 100vh;
+      height: auto;
+      width: auto;
+      display: block;
+    }
+
+    .button-column {
+      display: flex;
+      flex-direction: column;
+      gap: 40px; /* control vertical space between buttons */
+      flex: 1;
+      padding: 40px;
+    }
+
+    .button-column button {
+      width: 30px;
+      align-self: flex-start;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+      width: 100%;
+      padding: 0;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      font-size: 50px;
+      background-color: #e2e2e2;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .button-column button:hover {
+      background-color: #b1c8db;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img class="left-fit" src="images/board.png" alt="Empty chess board">
+
+    <div class="button-column">
+      <button>Start Game</button>
+      <button>Load Game</button>
+      <button>Save Game</button>
+    </div>
+  </div>
+
+</body>
+</html>
