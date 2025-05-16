@@ -6,4 +6,4 @@ The UI will interface with the engine using Node.js by compiling the C++ & Pytho
 Install node.js and electron and configure your node_modules to be in the chess_app directory.
 
 From src/main, run cmd:  
-```npx electron main.js``
+```npx electron main.js```
