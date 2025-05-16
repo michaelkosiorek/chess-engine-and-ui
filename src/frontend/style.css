@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.board-container {
+  position: relative;
+  width: auto;
+  height: 100%;
+  aspect-ratio: 1;
+}
+
+.chess-board {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.pieces-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.chess-piece {
+  position: absolute;
+  width: 12.5%;
+  height: 12.5%;
+  cursor: grab;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.controls {
+  flex-grow: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #131820;
+}
+
+.controls button {
+  padding: 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: #a9c5ee;
+}

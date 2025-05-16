@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chess UI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="board-container">
+      <img src="images/board.png" alt="Chess Board" class="chess-board" />
+      <div class="pieces-layer" id="piecesLayer">
+        <!-- Pieces show up here when started -->
+      </div>
+    </div>
+    <div class="controls">
+      <button id="startButton">Start Game</button>
+      <button>Load Game</button>
+      <button>Save Game</button>
+    </div>
+  </div>
+
+  <script>
+    const piecesLayer = document.getElementById("piecesLayer");
+    const startButton = document.getElementById("startButton");
+
+    const defaultPosition = {
+      a1: "w_rook", b1: "w_knight", c1: "w_bishop", d1: "w_queen", e1: "w_king", f1: "w_bishop", g1: "w_knight", h1: "w_rook",
+      a2: "w_pawn", b2: "w_pawn", c2: "w_pawn", d2: "w_pawn", e2: "w_pawn", f2: "w_pawn", g2: "w_pawn", h2: "w_pawn",
+      a7: "b_pawn", b7: "b_pawn", c7: "b_pawn", d7: "b_pawn", e7: "b_pawn", f7: "b_pawn", g7: "b_pawn", h7: "b_pawn",
+      a8: "b_rook", b8: "b_knight", c8: "b_bishop", d8: "b_queen", e8: "b_king", f8: "b_bishop", g8: "b_knight", h8: "b_rook"
+    };
+
+    const fileToX = { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5, g: 6, h: 7 };
+
+    function squareToPercent(square) {
+      const file = square[0]; // a-f
+      const rank = parseInt(square[1]); // 1-8
+      const x = fileToX[file] * 12.5; // 1/8th of board
+      const y = (8 - rank) * 12.5;
+      return { left: `${x}%`, top: `${y}%` };
+    }
+
+    function createPiece(id, src, top, left) {
+      const img = document.createElement("img");
+      img.src = `images/${src}.svg`;
+      img.className = "chess-piece";
+      img.style.top = top;
+      img.style.left = left;
+      img.setAttribute("draggable", true);
+      img.dataset.piece = id;
+      return img;
+    }
+
+    function initDraggable(piecesContainer) {
+      let selectedPiece = null;
+
+      piecesContainer.addEventListener("dragstart", (e) => {
+        if (e.target.classList.contains("chess-piece")) {
+          selectedPiece = e.target;
+        }
+      });
+
+      piecesContainer.addEventListener("dragover", (e) => {
+        e.preventDefault();
+      });
+
+      piecesContainer.addEventListener("drop", (e) => {
+        e.preventDefault();
+        if (!selectedPiece) return;
+        const rect = piecesContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        // snap to nearest eighth (square)
+        const snappedX = Math.floor(x / (rect.width / 8)) * 12.5;
+        const snappedY = Math.floor(y / (rect.height / 8)) * 12.5;
+        selectedPiece.style.left = `${snappedX}%`;
+        selectedPiece.style.top = `${snappedY}%`;
+        selectedPiece = null;
+      });
+    }
+
+    // starting pos. setup
+    startButton.addEventListener("click", () => {
+      piecesLayer.innerHTML = ""; 
+      for (const square in defaultPosition) {
+        const pieceId = defaultPosition[square];
+        const { top, left } = squareToPercent(square);
+        const piece = createPiece(pieceId, pieceId, top, left);
+        piecesLayer.appendChild(piece);
+      }
+      initDraggable(piecesLayer);
+    });
+  </script>
+</body>
+</html>
