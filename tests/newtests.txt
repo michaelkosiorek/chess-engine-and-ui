@@ -1,0 +1,13 @@
+For running new tests
+1. Update CMakeLists.txt (here)
+    Add the corresponding test sources
+2. Rerun
+    cmake -S . -B build (in Dev. Cmd Prompt (VS))
+        or
+    cmake .. (from in build)
+3. Build
+    cmake --build build
+4. Run
+    ctest
+        or
+    ctest --output-on-failure
