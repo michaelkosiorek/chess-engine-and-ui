@@ -1,10 +1,9 @@
-add_library(chess_app
+add_library(chess_engine_lib
     chess_engine.cpp
     chess_interface.cpp
-    engine_helpers.cpp
 )
 
 # include path
-target_include_directories(chess_app PUBLIC
+target_include_directories(chess_engine_lib PRIVATE
     ${CMAKE_SOURCE_DIR}/include
 )

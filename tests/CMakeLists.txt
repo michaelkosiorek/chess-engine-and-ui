@@ -1,17 +1,33 @@
 add_executable(
-    test_engine_helpers test_engine_helpers.cpp
+    test_math_utils
+    test_math_utils.cpp
 )
 
-target_link_libraries(
-    test_engine_helpers chess_app
-    GTest::gtest_main
+add_executable(
+    test_chess_engine
+    test_chess_engine.cpp
 )
 
-# include path
-target_include_directories(chess_app PUBLIC
+target_include_directories(test_math_utils PUBLIC
     ${CMAKE_SOURCE_DIR}/include
 )
 
+target_include_directories(test_chess_engine PUBLIC
+    ${CMAKE_SOURCE_DIR}/include
+)
+
+target_link_libraries(
+    test_math_utils PRIVATE
+    GTest::gtest_main
+    math_lib
+)
+
+target_link_libraries(
+    test_chess_engine PRIVATE
+    GTest::gtest_main
+    chess_engine_lib
+)
 
 include(GoogleTest)
-gtest_discover_tests(test_engine_helpers)
+gtest_discover_tests(test_math_utils)
+gtest_discover_tests(test_chess_engine)
