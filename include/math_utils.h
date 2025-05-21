@@ -1,6 +1,7 @@
 #ifndef MATH_UTILS_H
 #define MATH_UTILS_H
+#include <cstdint>
 
-long long fastPower(int base, int expo);
+uint64_t fastPowerPos(uint64_t base, uint64_t expo);
 
 #endif

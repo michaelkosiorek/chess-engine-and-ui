@@ -1,6 +1,7 @@
 add_library(chess_engine_lib
     chess_engine.cpp
     chess_interface.cpp
+    ../math/math_utils.cpp
 )
 
 # include path

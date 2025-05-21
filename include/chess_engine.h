@@ -3,20 +3,24 @@
 
 #include <cstdint>
 #include <iostream>
+#include <string>
 #include <vector>
 #include <unordered_map>
 #include <cassert>
 
-//handles a1 -> a8, through h1 -> h8 (LOWERCASE ONLY)
-int64_t square_to_bitboard(const std::string& square);
+// handles a1 -> a8, through h1 -> h8 (only lowercase)
+// a1 -> 0x80/128, b2 -> 0x4000/16384
+uint64_t square_to_bitboard(const std::string& square);
+// for one square only
+std::string bitboard_to_square(const uint64_t& bitboard);
 
-//contains bitboards for all pieces and colors
+// contains bitboards for all pieces & colors
 class Board
 {   
     public:
-    std::unordered_map<std::string, int64_t> pieces;
-    int64_t white_pieces;
-    int64_t black_pieces;
+    std::unordered_map<std::string, uint64_t> pieces;
+    uint64_t white_pieces;
+    uint64_t black_pieces;
 
     Board()
     {

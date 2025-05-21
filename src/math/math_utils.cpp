@@ -1,9 +1,9 @@
 #include "math_utils.h"
 
-long long fastPower(int base, int expo) {
-    long long result = 1;
+uint64_t fastPowerPos(uint64_t base, uint64_t expo) {
+    uint64_t result = 1;
     while (expo > 0) {
-        if (expo % 2 == 1) { // If expo is odd
+        if (expo % 2 == 1) {
             result *= base;
         }
         base *= base;

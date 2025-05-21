@@ -1,17 +1,32 @@
 #include "chess_engine.h"
 #include "math_utils.h"
 
+#include <intrin.h> // For _BitScanReverse64
 
-// a1 -> 0x80/128, b2 -> 0x4000/16384
-int64_t square_to_bitboard(const std::string& square)
+uint64_t square_to_bitboard(const std::string& square)
 {
-    if (square.size() != 2) exit(EXIT_FAILURE);
-
+	if (square.length() != 2) throw std::invalid_argument("Invalid square: " + square);
     char file = square[0];
     char rank = square[1];
-    assert(file >= 'a' && file <= 'h');
-    assert(rank >= '1' && rank <= '8');
+	if (file < 'a' || file > 'h') throw std::invalid_argument("Invalid file: " + std::string(1, file));
+	if (rank < '1' || rank > '8') throw std::invalid_argument("Invalid rank: " + std::string(1, rank));
 
     int index = (rank - '1') * 8 + (file - 'h') * -1;
     return 1ULL << index;
+}
+
+std::string bitboard_to_square(const uint64_t& bitboard)
+{
+    unsigned long index_long; // index of MSB
+	unsigned char is_nonzero = _BitScanReverse64(&index_long, bitboard);
+	int index = static_cast<int>(index_long);
+	if (index < 0 && index > 63) throw std::invalid_argument("Invalid bitboard: " + std::to_string(bitboard));
+    if (fastPowerPos(2, index) != bitboard) throw std::invalid_argument("Invalid bitboard: board contains multiple squares: "
+        + std::to_string(fastPowerPos(2, index))
+        + " != " + std::to_string(bitboard) + "\n"
+        + "Input is base, exp: 2, " + std::to_string(index) + "\n");
+
+    char file = 'h' - (index % 8);
+    char rank = '1' + (index / 8);
+    return std::string(1, file) + std::string(1, rank);
 }
