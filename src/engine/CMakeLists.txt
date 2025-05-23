@@ -1,8 +1,9 @@
 add_library(chess_engine_lib
-    chess_engine.cpp
+    board.cpp
     chess_interface.cpp
-    ../math/math_utils.cpp
-)
+    masking_helpers.cpp
+    move_generation.cpp
+    ../math/math_utils.cpp)
 
 # include path
 target_include_directories(chess_engine_lib PRIVATE

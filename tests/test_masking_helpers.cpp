@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "chess_engine.h"
+#include "masking_helpers.h"
 
 // ordered like this because h1 = 1, g1 = 2, f1= 4, etc.
 std::vector<std::string> all_squares = { "h1", "g1", "f1", "e1", "d1", "c1", "b1", "a1",
@@ -28,7 +28,7 @@ TEST(SquareToBitboardTest, TestAssertsSTB)
 {
     EXPECT_THROW(square_to_bitboard("a"), std::invalid_argument);
     EXPECT_THROW(square_to_bitboard("aaa"), std::invalid_argument);
-	EXPECT_THROW(square_to_bitboard("h9"), std::invalid_argument);
+    EXPECT_THROW(square_to_bitboard("h9"), std::invalid_argument);
     EXPECT_THROW(square_to_bitboard("h0"), std::invalid_argument);
     EXPECT_THROW(square_to_bitboard("A1"), std::invalid_argument);
     EXPECT_THROW(square_to_bitboard("i1"), std::invalid_argument);
