@@ -12,7 +12,7 @@
 // returns the index of the MSB set in a bitboard
 int bitboard_to_index(const uint64_t& bitboard);
 // returns all indices set in a bitboard
-std::vector<int> bitboard_to_indices(const uint64_t& bitboard);
+std::vector<int> bitboard_to_indices(uint64_t bitboard);
 
 // handles a1 -> a8, through h1 -> h8 (only lowercase)
 // a1 -> 0x80/128, b2 -> 0x4000/16384

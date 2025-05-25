@@ -18,6 +18,7 @@ public:
     std::unordered_map<Piece, uint64_t> piece_masks;
     uint64_t white_pieces;
     uint64_t black_pieces;
+    uint64_t all_pieces;
 	bool white_to_move = true;
 
     struct CastlingRights {

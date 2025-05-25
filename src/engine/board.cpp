@@ -30,6 +30,8 @@ void Board::set_default_position() {
     piece_masks[B_QUEEN] = 0x1000000000000000;
     piece_masks[B_KING] = 0x0800000000000000;
     black_pieces = 0xFFFF000000000000;
+
+	all_pieces = white_pieces | black_pieces;
 }
 
 void Board::update_side_masks()
