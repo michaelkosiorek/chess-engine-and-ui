@@ -24,8 +24,7 @@ std::vector<Move> generate_bishop_moves(const Board& board);
 std::vector<Move> generate_knight_moves(const Board& board);
 std::vector<Move> generate_pawn_moves(const Board& board);
 
-bool double_move_is_legal(const Board& board, const int& pawn_idx);	
-Move generate_double_push_move(const Board& board, const int& pawn_idx);
-
+bool pawn_push_is_legal(const Board& board, int pawn_idx, int push_distance);
+Move generate_pawn_push_move(const Board& board, int pawn_idx, bool is_double);
 
 #endif
