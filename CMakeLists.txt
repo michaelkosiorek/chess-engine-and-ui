@@ -15,5 +15,4 @@ FetchContent_MakeAvailable(googletest)
 
 # Add subdirectories
 add_subdirectory(src/engine)
-add_subdirectory(src/math)
 add_subdirectory(tests)

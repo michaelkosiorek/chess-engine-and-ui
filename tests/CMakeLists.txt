@@ -9,17 +9,17 @@ add_executable(
 )
 
 target_include_directories(test_math_utils PUBLIC
-    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src/engine
 )
 
 target_include_directories(test_masking_helpers PUBLIC
-    ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/src/engine
 )
 
 target_link_libraries(
     test_math_utils PRIVATE
     GTest::gtest_main
-    math_lib
+    chess_engine_lib
 )
 
 target_link_libraries(
